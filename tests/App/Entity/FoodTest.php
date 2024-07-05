@@ -20,21 +20,35 @@ class FoodTest extends TestCase
         ];
     }
 
-    public function testCreateEntity(): void
-    {
-        $food = Food::fromArray($this->data);
-
-        $this->assertInstanceOf(Food::class, $food);
-    }
-
     public function testEntityData(): void
     {
-        $food = Food::fromArray($this->data);
+        $food = new Food(
+            $this->data['id'],
+            $this->data['name'],
+            $this->data['type'],
+            $this->data['quantity'],
+            $this->data['unit']
+        );
+
+        $this->assertInstanceOf(Food::class, $food);
 
         $this->assertEquals($this->data['id'], $food->getId());
         $this->assertEquals($this->data['name'], $food->getName());
         $this->assertEquals($this->data['type'], $food->getType());
         $this->assertEquals($this->data['quantity'], $food->getQuantity());
         $this->assertEquals($this->data['unit'], $food->getUnit());
+    }
+
+    public function testReturningUnitsInKg()
+    {
+        $food = new Food(
+            $this->data['id'],
+            $this->data['name'],
+            $this->data['type'],
+            $this->data['quantity'],
+            $this->data['unit']
+        );
+
+        $this->assertEquals(109.22, $food->getQuantity(Food::UNIT_KILOGRAMS));
     }
 }

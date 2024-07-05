@@ -24,7 +24,14 @@ class StorageService
     {
         $data = json_decode($this->request, true);
         foreach ($data as $item) {
-            $food = Food::fromArray($item);
+            //$food = Food::fromArray($item);
+            $food = new Food(
+                $item['id'],
+                $item['name'],
+                $item['type'],
+                $item['quantity'],
+                $item['unit']
+            );
             $this->addToCollection($food);
         }
 

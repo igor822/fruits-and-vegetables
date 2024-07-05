@@ -48,7 +48,13 @@ class CollectionTest extends TestCase
     {
         $collection = new Collection();
         foreach ($this->data as $data) {
-            $food = Food::fromArray($data); 
+            $food = new Food(
+                $data['id'],
+                $data['name'],
+                $data['type'],
+                $data['quantity'],
+                $data['unit']
+            );
 
             $collection->add($food);
         }
