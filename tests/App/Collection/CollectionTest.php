@@ -67,12 +67,16 @@ class CollectionTest extends TestCase
     /**
      * @depends testCreateCollectionFromArray
      */
-    public function testRemoveItem($collection): void
+    public function testGetAndRemoveItem($collection): void
     {
-        $this->expectException(\Exception::class);
+        $food = $collection->get(2);
+
+        $this->assertInstanceOf(Food::class, $food);
 
         $collection->remove(2);
-        $collection->get(2);
+        $food = $collection->get(2);
+
+        $this->assertNull($food);
     }
 
 }

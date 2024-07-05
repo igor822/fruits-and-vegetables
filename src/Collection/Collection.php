@@ -28,18 +28,13 @@ class Collection implements CollectionInterface
 
     public function get(int $id): ?Food
     {
-        $food = null;
         foreach ($this->items as $index => $item) {
             if ($item->getId() == $id) {
-                return $food;
+                return $item;
             }
         }
 
-        if ($food == null) {
-            throw new \Exception("Item not found");
-        }
-
-        return $food;
+        return null;
     }
 
     public function list(): array
