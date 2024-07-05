@@ -16,7 +16,7 @@ class Food
         private int $id,
         private string $name,
         private string $type,
-        private int $quantity,
+        private float $quantity,
         private string $unit = self::UNIT_GRAMS
     )
     {
